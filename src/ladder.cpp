@@ -18,6 +18,9 @@ void error(string word1, string word2, string msg) {
 
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
+    if (str1 == str2)
+        return true;
+
     int s1_len = str1.length();
     int s2_len = str2.length();
 
@@ -56,8 +59,6 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 
 
 bool is_adjacent(const string& word1, const string& word2) {
-    if (word1 == word2)
-        return false;
     return edit_distance_within(word1, word2, 1);
 }
 
