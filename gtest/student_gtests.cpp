@@ -48,3 +48,42 @@ TEST(DijkstraTest, PersonalTestDijkstra) {
   EXPECT_EQ(distances, expected_results);
 }
 
+TEST(Ladder, SameWordEditDistAndAdjacent) {
+  bool edit_dist = edit_distance_within("hello", "hello", 1);
+  bool is_adj = is_adjacent("hello", "hello");
+  
+  EXPECT_EQ(edit_dist, true);
+  EXPECT_EQ(is_adj, true);
+}
+
+TEST(Ladder, SubstitutionEditDistanceWithin) {
+  bool edit_dist = edit_distance_within("cat", "car", 1);
+  bool is_adj = is_adjacent("cat", "car");
+
+  EXPECT_EQ(edit_dist, true);
+  EXPECT_EQ(is_adj, true);
+}
+
+TEST(Ladder, InsertionEditDistanceWithin) {
+  bool edit_dist = edit_distance_within("cat", "cart", 1);
+  bool is_adj = is_adjacent("cat", "cart");
+
+  EXPECT_EQ(edit_dist, true);
+  EXPECT_EQ(is_adj, true);
+}
+
+TEST(Ladder, DeletionEditDistanceWithin) {
+  bool edit_dist = edit_distance_within("later", "late", 1);
+  bool is_adj = is_adjacent("later", "late");
+
+  EXPECT_EQ(edit_dist, true);
+  EXPECT_EQ(is_adj, true);
+}
+
+TEST(Ladder, MoreThanOneEditDistanceWithin) {
+  bool edit_dist = edit_distance_within("leetcode", "letcoe", 1);
+  bool is_adj = is_adjacent("leetcode", "letcoe");
+
+  EXPECT_EQ(edit_dist, false);
+  EXPECT_EQ(is_adj, false);
+}
